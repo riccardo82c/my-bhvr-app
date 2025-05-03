@@ -28,7 +28,7 @@ function Home() {
       <h2>Bun + Hono + Vite + React</h2>
       <p>A typesafe fullstack monorepo</p>
       <div className="card">
-        <button onClick={sendRequest}>
+        <button onClick={sendRequest} className='bg-primary p-4 rounded hover:bg-tertiary cursor-pointer'>
           Call API
         </button>
         {data && (

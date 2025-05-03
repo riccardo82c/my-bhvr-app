@@ -5,7 +5,7 @@
   /* Colori per modalità light (default) */
   --color-primary: #2f9ac8;
   --color-secondary: #f5f5f5;
-  --color-tertiary: #ffffff;
+  --color-tertiary: #dddddd;
 }
 
 .dark {

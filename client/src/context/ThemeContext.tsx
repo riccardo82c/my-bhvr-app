@@ -1,47 +1,73 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { createContext, useState, useEffect, ReactNode } from 'react'
 
-type Theme = 'light' | 'dark' | 'system'
+// Types
+export type Theme = 'light' | 'dark' | 'system'
 
-interface ThemeContextType {
+export interface ThemeContextType {
   theme: Theme
   toggleTheme: () => void
 }
 
+// Create the context with a default undefined value
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-
+// Theme provider component
+export default function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check if user has a theme preference in localStorage
-    const savedTheme = localStorage.getItem('theme') as Theme
-    if (savedTheme) return savedTheme
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 
+    if (typeof window !== 'undefined') {
+
+      const savedTheme = localStorage.getItem('theme') as Theme
+      if (savedTheme) return savedTheme
+
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+
+    return 'light'
   })
 
   useEffect(() => {
-    // Update localStorage when theme changes
+    if (typeof window === 'undefined') return
+
     localStorage.setItem('theme', theme)
 
-    // Update document class
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else if (theme === 'light') {
-      document.documentElement.classList.remove('dark')
-    } else {
+    const isDark =
+      theme === 'dark' ||
+      (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
 
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (isDark) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [theme])
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || theme !== 'system') return
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+    if (mediaQuery.matches) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) {
         document.documentElement.classList.add('dark')
-      } else  {
+      } else {
         document.documentElement.classList.remove('dark')
       }
-
     }
+
+    mediaQuery.addEventListener('change', handler)
+
+    return () => mediaQuery.removeEventListener('change', handler)
   }, [theme])
 
   const toggleTheme = () => {
     setTheme(prevTheme => {
-
       switch (prevTheme) {
         case 'light':
           return 'dark'
@@ -51,7 +77,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
           return 'light'
       }
     })
-
   }
 
   return (
@@ -61,10 +86,4 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   )
 }
 
-export function useTheme() {
-  const context = useContext(ThemeContext)
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider')
-  }
-  return context
-}
+ThemeProvider.Context = ThemeContext
