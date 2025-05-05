@@ -3,13 +3,80 @@
 
 @theme {
   /* Colori per modalità light (default) */
-  --color-primary: #2f9ac8;
-  --color-secondary: #f5f5f5;
-  --color-tertiary: #dddddd;
+  --color-primary: #6d28d9; /* Viola più scuro, coerente con il bordo dei todo */
+  --color-secondary: #ffffff; /* Bianco per lo sfondo della navbar */
+  --color-tertiary: #ede9fe; /* Viola molto chiaro per gli elementi attivi */
+
+  /* Colori per la lista todo - light mode */
+  --todo-bg: #ffffff;
+  --todo-border: #d8b4fe;
+  --todo-shadow: rgba(168, 85, 247, 0.1);
+  --todo-text: #1f2937;
+  --todo-completed-bg: #e2e8f0;
+  --todo-completed-text: #475569;
+  --todo-completed-hover: #cbd5e1;
+  --todo-pending-bg: #ffffff;
+  --todo-pending-text: #64748b;
+  --todo-pending-hover: #e2e8f0;
+  --todo-completed-dot: #8b5cf6;
+  --todo-pending-dot: #cbd5e1;
+  --todo-empty-bg: #f9fafb;
+  --todo-empty-border: #e5e7eb;
+  --todo-options-bg: #f1f5f9;
+  --todo-options-text: #64748b;
+  --todo-options-hover: #e2e8f0;
+
+  /* Colori di sfondo per il body - light mode */
+  --body-bg: #f8fafc;
 }
 
 .dark {
-  --color-primary: #90cde9;
-  --color-secondary: #43463f;
-  --color-tertiary: #1b6389;
+  --color-primary: #a78bfa; /* Viola più chiaro per il testo */
+  --color-secondary: #1e293b; /* Blu scuro per lo sfondo della navbar */
+  --color-tertiary: #4c1d95; /* Viola scuro per gli elementi attivi */
+
+  /* Colori per la lista todo - dark mode */
+  --todo-bg: #1f2937;
+  --todo-border: #7e22ce;
+  --todo-shadow: rgba(126, 34, 206, 0.2);
+  --todo-text: #f3f4f6;
+  --todo-completed-bg: #334155;
+  --todo-completed-text: #cbd5e1;
+  --todo-completed-hover: #475569;
+  --todo-pending-bg: #1e293b;
+  --todo-pending-text: #94a3b8;
+  --todo-pending-hover: #334155;
+  --todo-completed-dot: #a78bfa;
+  --todo-pending-dot: #64748b;
+  --todo-empty-bg: #374151;
+  --todo-empty-border: #4b5563;
+  --todo-options-bg: #334155;
+  --todo-options-text: #94a3b8;
+  --todo-options-hover: #475569;
+
+  /* Colori di sfondo per il body - dark mode */
+  --body-bg: #0f172a;
+}
+
+/* Stile per il body a tutta altezza */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--todo-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* padding: 2rem; */
 }
