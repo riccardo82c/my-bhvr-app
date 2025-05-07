@@ -13,7 +13,7 @@ app.use(cors())
 app.route('/todos', todoRoutes)
 
 // Usa il server integrato di Bun
-const port = 3000
+const port = parseInt(process.env.PORT || '3000', 10)
 console.log(`Server in esecuzione su http://localhost:${port}`)
 export default {
   port,

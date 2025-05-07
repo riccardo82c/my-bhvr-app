@@ -4,6 +4,14 @@
 
 A full-stack TypeScript monorepo starter with shared types, using Bun, Hono, Vite, and React
 
+## Variabili d'ambiente
+
+Il progetto utilizza un unico file `.env` nella root per configurare sia il client che il server.
+
+Copia il file `.env.example` nella root e rinominalo in `.env`, quindi modifica i valori secondo le tue esigenze.
+
+Le variabili d'ambiente per il client devono avere il prefisso `VITE_`.
+
 ## Why bhvr?
 
 While there are plenty of existing app building stacks out there, many of them are either bloated, outdated, or have too much of a vendor lock-in. bhvr is built with the opinion that you should be able to deploy your client or server in any enviorment while also keeping type saftey.
