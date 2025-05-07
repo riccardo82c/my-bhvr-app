@@ -12,4 +12,10 @@ app.use(cors())
 // Monta le rotte dei todos
 app.route('/todos', todoRoutes)
 
-export default app
+// Usa il server integrato di Bun
+const port = 3000
+console.log(`Server in esecuzione su http://localhost:${port}`)
+export default {
+  port,
+  fetch: app.fetch
+}
