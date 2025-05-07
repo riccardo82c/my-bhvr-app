@@ -69,7 +69,7 @@ const Create = () => {
       if (data) {
         setInfo(`Task ${todoId ? 'aggiornato' : 'creato'} con successo... redirect`)
         setTitle('')
-        await sleep(2000)
+        await sleep(1000)
         setInfo('')
         navigate('/')
       }
