@@ -29,6 +29,10 @@ userRoutes.get('/', authMiddleware ,async (c) => {
   // QUI HO A DISPOSIZIONE TUTTE LE INFORMAZIONI PRESE DAL TOKEN
   console.log('c', c.get('jwtPayload'))
 
+  // TODO: implementare check del ruolo
+
+  if (c.get('jwtPayload').role !== 'admin') return c.json({ message: 'Unauthorized' }, 401)
+
   try {
     const users = await User.find({}).sort({ createdAt: -1 })
     console.log('users', users)

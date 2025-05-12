@@ -70,7 +70,7 @@ export default function Login() {
         <a href="https://github.com/stevedylandev/bhvr" target="_blank" rel="noreferrer">
           <img src={beaver} alt="beaver logo" />
         </a>
-        <span>Login</span>
+        <span>Signup</span>
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="">
@@ -130,10 +130,10 @@ export default function Login() {
 
           <div className='flex justify-center'>
             <Link
-              to='/signup'
+              to='/login'
               className="text-[var(--todo-text)] hover:underline"
             >
-              Don't have an account? Sign up
+              Already registered? Login
             </Link>
           </div>
         </div>

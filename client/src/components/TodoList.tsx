@@ -12,16 +12,17 @@ interface TodoListProps {
 export default function TodoList({ todos, onToggle, onEdit, onDelete, loading = false }: TodoListProps) {
   if (loading) {
     return (
-      <div className="text-center py-8 bg-[var(--todo-empty-bg)] border border-[var(--todo-empty-border)] rounded-lg text-[var(--todo-text)]">
-        Caricamento in corso...
+      <div className="text-center py-8 bg-[var(--todo-bg)] border border-[var(--todo-border)] rounded-lg text-[var(--todo-text)] flex flex-col items-center justify-center">
+        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[var(--color-primary)]"></div>
+        <p className="mt-3">Caricamento...</p>
       </div>
     )
   }
 
   if (!todos || todos.length === 0) {
     return (
-      <div className="text-center py-8 bg-[var(--todo-empty-bg)] border border-[var(--todo-empty-border)] rounded-lg text-[var(--todo-text)]">
-        {todos ? 'Nessun task disponibile' : 'Clicca "Call API" per caricare i task'}
+      <div className="text-center py-8 bg-[var(--todo-bg)] border border-[var(--todo-border)] rounded-lg text-[var(--todo-text)]">
+        Nessun task disponibile
       </div>
     )
   }
@@ -29,9 +30,9 @@ export default function TodoList({ todos, onToggle, onEdit, onDelete, loading = 
   return (
     <div className="space-y-3">
       {todos.map((todo) => (
-        <Todo 
-          key={todo._id} 
-          todo={todo} 
+        <Todo
+          key={todo._id}
+          todo={todo}
           onToggle={onToggle}
           onEdit={onEdit}
           onDelete={onDelete}
