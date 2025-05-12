@@ -1,18 +1,13 @@
-// shared/schemas/todo.ts
-import { z } from 'zod'
+// shared/src/schemas/index.ts
+export * from './todo'
+export * from './user'
 
-// validazione Zod
-export const todoSchema = z.object({
-  title: z.string().min(1).max(100),
-  completed: z.boolean().default(false),
-  // Non includere createdAt qui, sarà aggiunto solo lato server
-})
-
-// Tipo derivato dallo schema Zod
-export type TodoInput = z.infer<typeof todoSchema>
-
-// Tipo completo con campi generati dal server
-export interface Todo extends TodoInput {
+// Puoi anche aggiungere tipi o schemi comuni qui
+export interface WithId {
   _id: string
+}
+
+export interface WithTimestamps {
   createdAt: Date
+  updatedAt?: Date
 }

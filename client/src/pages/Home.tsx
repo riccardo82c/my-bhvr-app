@@ -8,8 +8,6 @@ import ConfirmModal from '../components/ConfirmModal'
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
 
-
-
 function Home() {
   const [todos, setTodos] = useState<Todo[] | undefined>()
   const [loading, setLoading] = useState(false)
